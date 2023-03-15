@@ -1,92 +1,77 @@
-let n = 5;
-let total = 0;
-let userTotal = 0;
-let computerTotal = 0;
 
-for (let i =1; i<=n; i++) {
-    total += 1 
-    console.log("Round",total)
-    
-var playerSelection = prompt("Rock..Paper..Scissors...Shoot!")
+var compAnswer ="";
+var userAnswer ="";
 
-function convertPlayerSelection() {
-    const converted = playerSelection.toLowerCase()
-    return converted
+function computerAnswer() {
+	random = Math.floor(Math.random()*3+1)
+	switch(random) {
+		case 1:
+			return 'rock';
+			break;
+		case 2:
+			return 'paper';
+			break;
+		case 3: 
+			return 'scissor'
+			break;
+	}
+	
 }
 
-function getComputerChoice() {
-    const computerChoice = Math.floor(Math.random()*3)
-    if (computerChoice === 0) {
-        return "rock"
-    } 
-    if (computerChoice === 1) {
-        return "paper"
-    }
-    if (computerChoice === 2) {
-        return "scissor"
-    }
-}
-
-const converted = convertPlayerSelection();
-console.log("You gave: ", converted);
-
-const computerChoice = getComputerChoice();
-console.log("Computer gave: ", computerChoice);
-
-function compare() {
-    if (converted === computerChoice) {
-        console.log("tie")
-    } 
-    if (converted === "rock" && computerChoice === "paper") {
-        console.log("Computer wins")
-        computerTotal += 1;
-        console.log("Current Score: User--", userTotal, " Computer--", computerTotal)
-    }
-
-    if (converted === "rock" && computerChoice === "scissor") {
-        console.log("User wins")
-        userTotal += 1;
-        console.log("Current Score: User--", userTotal, " Computer--", computerTotal)
-    }
-
-    if (converted === "paper" && computerChoice === "rock") {
-        console.log("User wins")
-        userTotal += 1;
-        console.log("Current Score: User--", userTotal, " Computer--", computerTotal)
-    }
-
-    if (converted === "paper" && computerChoice === "scissor") {
-        console.log("Computer wins")
-        computerTotal += 1;
-        console.log("Current Score: User--", userTotal, " Computer--", computerTotal)
-    }
-
-    if (converted === "scissor" && computerChoice === "rock") {
-        console.log("Computer wins")
-        computerTotal += 1;
-        console.log("Current Score: User--", userTotal, " Computer--", computerTotal)
-    }
-
-    if (converted === "scissor" && computerChoice === "paper") {
-        console.log("User wins")
-        userTotal += 1;
-        console.log("Current Score: User--", userTotal, " Computer--", computerTotal)
-    }  
+function winnerIsFunction() {
+	if (compAnswer === userAnswer) {
+		return 'tie'
+	}
+	else if (
+		compAnswer == 'rock' && userAnswer == 'scissor' ||
+		compAnswer == 'paper' && userAnswer == 'rock' ||
+		compAnswer == 'scissor' && userAnswer == 'paper'
+	)
+		return 'Computer'
+	else 
+		return 'User'
 }
 
 
+var rock = document.getElementById('rock').addEventListener('click', function() {
+	compAnswer = computerAnswer()
+	userAnswer = 'rock';
+	winnerIs = winnerIsFunction();
+	document.getElementById("youSaid").innerHTML = '<h3>'+'You said: '+'rock'+'</h3>';
+	document.getElementById("compSaid").innerHTML = '<h3>'+'Computer said: '+ compAnswer+'</h3>';
+	document.getElementById("theWinner").innerHTML = '<h3>'+'The Winner is: '+ winnerIs +'</h3>';
+	console.log('userAnswer: ', userAnswer)
+	console.log('compAnswer: ', compAnswer)
+}	
+)
+	
 
-compare()
-}
 
-console.log("Current Score: User--", userTotal, " Computer--", computerTotal)
+var paper = document.getElementById('paper').addEventListener('click', function(){
+	compAnswer = computerAnswer()
+	userAnswer = 'paper';
+	winnerIs = winnerIsFunction();
+	document.getElementById("youSaid").innerHTML = '<h3>'+'You said: '+'paper'+'</h3>';
+	document.getElementById("compSaid").innerHTML = '<h3>'+'Computer said: '+ compAnswer+'</h3>';
+	document.getElementById("theWinner").innerHTML = '<h3>'+'The Winner is: '+ winnerIs +'</h3>';
+	console.log('userAnswer: ', userAnswer)
+	console.log('compAnswer: ', compAnswer)
+})
 
-if (userTotal == computerTotal) {
-    console.log("It's a tie!")
-}
-if (userTotal > computerTotal) {
-    console.log("User wins!")
-}
-if (userTotal < computerTotal) {
-    console.log("Computer wins!")
-}
+var paper = document.getElementById('scissor').addEventListener('click', function(){
+	compAnswer = computerAnswer()
+	userAnswer = 'scissor';
+	winnerIs = winnerIsFunction();
+	document.getElementById("youSaid").innerHTML = '<h3>'+'You said: '+'scissor'+'</h3>';
+	document.getElementById("compSaid").innerHTML = '<h3>'+'Computer said: '+ compAnswer+'</h3>';
+	document.getElementById("theWinner").innerHTML = '<h3>'+'The Winner is: '+ winnerIs +'</h3>';
+	console.log('userAnswer: ', userAnswer)
+	console.log('compAnswer: ', compAnswer)
+})
+
+
+
+
+// const para = document.createElement('p');
+// para.textContent = ;
+// output.appendChild(para);
